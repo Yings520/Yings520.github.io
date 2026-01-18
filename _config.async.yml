@@ -140,13 +140,13 @@ sidebar:
   typed_text: ["a Senior Data Engineer, I am seeking job opportunities overseas."] # 打字效果切换条目 <string[]>
   info: # 侧栏信息 <object[]> {{"key:名称":"","val:值":""}}
     - key: sidebar.residence
-      val: Shanghai
+      val: Singapore
   social: # 社交图标 <object[]> {{"name:名称":"","icon:图标":"","url:地址":""}}
     - name: Github
       icon: fab fa-github
       url: https://github.com/Yings520
     
-    - name: Linkedln
+    - name: LinkedIn
       icon: fab fa-linkedin-in
       url: https://www.linkedin.com/in/shicong-ying-85aa53354/
 
@@ -236,7 +236,7 @@ footer:
   live_time: # 运行时间
     enable: false # 启用
     prefix: footer.tips # 计时文案
-    start_time: 04/10/2022 17:00:00 # 计时开始时间
+    start_time: 04/08/2024 17:20:00 # 计时开始时间
   #
   custom_text: ## 自定义内容
 
