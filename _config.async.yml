@@ -137,7 +137,7 @@ banner:
 # Sidebar settings | 侧栏
 sidebar:
   typed_text_prefix: I`m # 打字动画固定前缀
-  typed_text: ["a Senior Data Engineer, I am seeking job opportunities overseas."] # 打字效果切换条目 <string[]>
+  typed_text: ["Senior Data Engineer | AI Data & RAG Pipelines | Seeking Overseas Opportunities."] # 打字效果切换条目 <string[]>
   info: # 侧栏信息 <object[]> {{"key:名称":"","val:值":""}}
     - key: sidebar.residence
       val: Singapore
