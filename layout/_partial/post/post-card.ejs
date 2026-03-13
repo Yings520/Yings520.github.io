@@ -1,0 +1,78 @@
+<div class="col-lg-6">
+    <%
+      const langs = (Array.isArray(config.language) ? config.language : String(config.language || '').split(','))
+        .map(item => String(item).trim())
+        .filter(item => item && item !== 'default');
+      const pathWithSlash = `/${String(path || '').replace(/^\/+/, '')}`;
+      const pageLang = (page && (page.lang || page.language))
+        || langs.find(lang => pathWithSlash === `/${lang}` || pathWithSlash.startsWith(`/${lang}/`))
+        || langs[0];
+      const defaultLang = langs[0] || 'en';
+      const localizeUrl = rawUrl => {
+        if (!rawUrl) return url_for('/');
+        const value = String(rawUrl);
+        if (/^(#|\/\/|https?:\/\/)/i.test(value)) return value;
+        let pathname = value;
+        let suffix = '';
+        const match = value.match(/^([^?#]*)([\s\S]*)$/);
+        if (match) {
+          pathname = match[1];
+          suffix = match[2] || '';
+        }
+        if (!pathname.startsWith('/')) pathname = `/${pathname}`;
+        for (const lang of langs) {
+          if (pathname === `/${lang}`) pathname = '/';
+          if (pathname.startsWith(`/${lang}/`)) pathname = pathname.slice(lang.length + 1);
+        }
+        if (pageLang && pageLang !== defaultLang) {
+          pathname = pathname === '/' ? `/${pageLang}/` : `/${pageLang}${pathname}`;
+        }
+        return url_for(`${pathname}${suffix}`);
+      };
+    %>
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="<%- localizeUrl(post.path) %>" class="trm-cover-frame trm-anima-link">
+            <%  let coverURl = post.cover ? 
+                post.cover :  (
+                    theme.cover.type === 'img' ?
+                    theme.cover.default : theme.cover.type ) 
+            %>
+            <% if(coverURl === 'date' ) { %>
+                <div class="trm-cover-date">
+                    <div class="trm-cover-day"><%= date(post[theme.datetime_foramt.post_card.type], theme.datetime_foramt.post_card.cover_date) %></div>
+                    <div class="trm-cover-month"><%= date(post[theme.datetime_foramt.post_card.type], theme.datetime_foramt.post_card.cover_date2) %></div>
+                </div>
+            <% } else if(coverURl === 'random' ) { %>
+                <div class="trm-cover-img" data-random-img></div>
+            <% } else if(coverURl) { %>
+                <%- swich_imgs(coverURl, { alt: "cover", class:"no-fancybox" }) %>
+            <% } %>
+        </a>
+        <% if(is_home() && post.sticky > 0) { %>
+            <div class="trm-top"><%- __('post.sticky') %></div>
+        <% } %>
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" <%- post.categories && post.categories.length ? localizeUrl(post.categories.data[0].path) :'#.' %>">
+                    <%- post.categories && post.categories.length ? post.categories.data[0].name :__('title.unclassified')  %>
+                </a>
+            </div>
+            <h5>
+                <a href="<%- localizeUrl(post.path) %>" class="trm-anima-link">
+                    <%= post.title %>
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li><%= date(post[theme.datetime_foramt.post_card.type],theme.datetime_foramt.post_card.date) %></li>
+                <li><%= date(post[theme.datetime_foramt.post_card.type],theme.datetime_foramt.post_card.time) %></li>
+                <% if(theme.wordcount.enable && theme.wordcount.count){ %>
+                    <li><%= wordcount(post.content) %></li>
+                <% } %>
+                <% if(theme.wordcount.enable && theme.wordcount.time){ %>
+                    <li><%= min2read(post.content) %></li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</div>

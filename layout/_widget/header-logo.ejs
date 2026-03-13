@@ -1,0 +1,23 @@
+<%
+  const langs = (Array.isArray(config.language) ? config.language : String(config.language || '').split(','))
+    .map(item => String(item).trim())
+    .filter(item => item && item !== 'default');
+  const pathWithSlash = `/${String(path || '').replace(/^\/+/, '')}`;
+  const currentLang = (page && (page.lang || page.language))
+    || langs.find(lang => pathWithSlash === `/${lang}` || pathWithSlash.startsWith(`/${lang}/`))
+    || langs[0];
+  const defaultLang = langs[0] || 'en';
+  const homeHref = currentLang && currentLang !== defaultLang ? url_for(`/${currentLang}/`) : url_for('/');
+%>
+<!-- logo -->
+<a href="<%- homeHref %>" class="trm-logo-frame trm-anima-link">
+    <% if(theme.favicon.logo) { %>
+        <%- swich_imgs([theme.favicon.logo, theme.favicon.dark_logo], { alt: "logo" }) %>
+    <% } %>
+    <% if(theme.user.last_name) { %>
+        <div class="trm-logo-text">
+            <%= theme.user.last_name %><span><%= theme.user.first_name %></span>
+        </div>
+    <% } %>
+</a>
+<!-- logo end -->

@@ -1,0 +1,195 @@
+:root.dark figure.highlight.python,
+:root.dark figure.highlight.sql,
+:root.dark figure.highlight.yaml,
+:root.dark figure.highlight.yml,
+:root.dark figure.highlight.json,
+:root.dark figure.highlight.rust,
+:root.dark figure.highlight.shell,
+:root.dark figure.highlight.bash {
+  border-color: rgba(143, 161, 205, 0.18);
+}
+
+:root.dark figure.highlight.python .code-tools .code-lang,
+:root.dark figure.highlight.sql .code-tools .code-lang,
+:root.dark figure.highlight.yaml .code-tools .code-lang,
+:root.dark figure.highlight.yml .code-tools .code-lang,
+:root.dark figure.highlight.json .code-tools .code-lang,
+:root.dark figure.highlight.rust .code-tools .code-lang,
+:root.dark figure.highlight.shell .code-tools .code-lang,
+:root.dark figure.highlight.bash .code-tools .code-lang {
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+:root.dark figure.highlight.python .keyword,
+:root.dark figure.highlight.python .class .title,
+:root.dark figure.highlight.python .function .title,
+:root.dark figure.highlight.python .title.function_,
+:root.dark figure.highlight.python .title.class_,
+:root.dark figure.highlight.python .meta,
+:root.dark figure.highlight.python .decorator,
+:root.dark figure.highlight.python .params .keyword {
+  color: #cda6ff !important;
+}
+
+:root.dark figure.highlight.python .built_in,
+:root.dark figure.highlight.python .title,
+:root.dark figure.highlight.python .type,
+:root.dark figure.highlight.python .property {
+  color: #8ad7ff !important;
+}
+
+:root.dark figure.highlight.python .string,
+:root.dark figure.highlight.python .subst,
+:root.dark figure.highlight.python .doctag {
+  color: #b8e88f !important;
+}
+
+:root.dark figure.highlight.python .number,
+:root.dark figure.highlight.python .literal {
+  color: #ffbe78 !important;
+}
+
+:root.dark figure.highlight.python .comment {
+  color: #70789a !important;
+}
+
+:root.dark figure.highlight.sql .keyword,
+:root.dark figure.highlight.sql .operator,
+:root.dark figure.highlight.sql .selector-tag {
+  color: #ff9bc0 !important;
+}
+
+:root.dark figure.highlight.sql .built_in,
+:root.dark figure.highlight.sql .function,
+:root.dark figure.highlight.sql .title,
+:root.dark figure.highlight.sql .type {
+  color: #8ad7ff !important;
+}
+
+:root.dark figure.highlight.sql .string,
+:root.dark figure.highlight.sql .regexp {
+  color: #b8e88f !important;
+}
+
+:root.dark figure.highlight.sql .number,
+:root.dark figure.highlight.sql .literal {
+  color: #ffbe78 !important;
+}
+
+:root.dark figure.highlight.sql .comment {
+  color: #70789a !important;
+}
+
+:root.dark figure.highlight.yaml .attr,
+:root.dark figure.highlight.yml .attr,
+:root.dark figure.highlight.yaml .attribute,
+:root.dark figure.highlight.yml .attribute {
+  color: #7fd7ff !important;
+}
+
+:root.dark figure.highlight.yaml .string,
+:root.dark figure.highlight.yml .string,
+:root.dark figure.highlight.yaml .type,
+:root.dark figure.highlight.yml .type {
+  color: #bae67e !important;
+}
+
+:root.dark figure.highlight.yaml .number,
+:root.dark figure.highlight.yml .number,
+:root.dark figure.highlight.yaml .literal,
+:root.dark figure.highlight.yml .literal {
+  color: #ffbe78 !important;
+}
+
+:root.dark figure.highlight.yaml .bullet,
+:root.dark figure.highlight.yml .bullet,
+:root.dark figure.highlight.yaml .punctuation,
+:root.dark figure.highlight.yml .punctuation {
+  color: #9aa7c7 !important;
+}
+
+:root.dark figure.highlight.yaml .comment,
+:root.dark figure.highlight.yml .comment {
+  color: #70789a !important;
+}
+
+:root.dark figure.highlight.json .attr,
+:root.dark figure.highlight.json .attribute {
+  color: #7fd7ff !important;
+}
+
+:root.dark figure.highlight.json .string {
+  color: #bae67e !important;
+}
+
+:root.dark figure.highlight.json .number,
+:root.dark figure.highlight.json .literal {
+  color: #ffbe78 !important;
+}
+
+:root.dark figure.highlight.json .punctuation {
+  color: #9aa7c7 !important;
+}
+
+:root.dark figure.highlight.rust .keyword,
+:root.dark figure.highlight.rust .meta,
+:root.dark figure.highlight.rust .attribute,
+:root.dark figure.highlight.rust .selector-tag {
+  color: #d4bfff !important;
+}
+
+:root.dark figure.highlight.rust .type,
+:root.dark figure.highlight.rust .title,
+:root.dark figure.highlight.rust .built_in {
+  color: #8ad7ff !important;
+}
+
+:root.dark figure.highlight.rust .string,
+:root.dark figure.highlight.rust .symbol {
+  color: #bae67e !important;
+}
+
+:root.dark figure.highlight.rust .number,
+:root.dark figure.highlight.rust .literal {
+  color: #ffbe78 !important;
+}
+
+:root.dark figure.highlight.rust .comment {
+  color: #70789a !important;
+}
+
+:root.dark figure.highlight.rust .punctuation {
+  color: #9aa7c7 !important;
+}
+
+:root.dark figure.highlight.shell .built_in,
+:root.dark figure.highlight.bash .built_in,
+:root.dark figure.highlight.shell .title,
+:root.dark figure.highlight.bash .title {
+  color: #7fd7ff !important;
+}
+
+:root.dark figure.highlight.shell .variable,
+:root.dark figure.highlight.bash .variable,
+:root.dark figure.highlight.shell .params,
+:root.dark figure.highlight.bash .params {
+  color: #ffbe78 !important;
+}
+
+:root.dark figure.highlight.shell .string,
+:root.dark figure.highlight.bash .string {
+  color: #bae67e !important;
+}
+
+:root.dark figure.highlight.shell .literal,
+:root.dark figure.highlight.bash .literal,
+:root.dark figure.highlight.shell .keyword,
+:root.dark figure.highlight.bash .keyword {
+  color: #d4bfff !important;
+}
+
+:root.dark figure.highlight.shell .comment,
+:root.dark figure.highlight.bash .comment {
+  color: #70789a !important;
+}

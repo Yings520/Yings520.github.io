@@ -1,96 +1,277 @@
-site:
-  title: Site Information
-  webmaster: Webmaster
-  domain: Domain
-  avatar: Avatar
-  describe: Describe
-  rule_text: Friend chain requirements
+en:
+  site:
+    title: Site Information
+    webmaster: Webmaster
+    domain: Domain
+    avatar: Avatar
+    describe: Describe
+    rule_text: Friend chain requirements
 
-sidebar:
-  residence: Residence
-  city: City
-  age: Age
-  contact: Contact Me
+  sidebar:
+    residence: Residence
+    city: City
+    age: Age
+    contact: Contact Me
+    online: online
+    idle: idle
+    role_title: Senior Data & AI Engineer
+    badge_data_eng: Data Eng
+    badge_ml_ai: ML / AI
+    badge_mlops: MLOps
+    tech_stack: Tech Stack
+    stream_dashboard: Stream Dashboard
+    live_stream: Live Stream
+    events_per_s: events/s
+    latency: latency
+    throughput: GB/s
+    focus_label: Focus
+    focus_value: Data & AI
+    typed_prefix: I`m
+    typed_line_1: Senior Data Engineer | AI Data & RAG Pipelines | Seeking Overseas Opportunities.
+    singapore: Singapore
 
-footer:
-  powered: 'Powered by %s'
-  theme: Theme
-  tips: 'The blog has been lovely to run %s day'
-  day: day
-  hour: hour
-  minute: minute
-  seconds: seconds
+  footer:
+    powered: 'Powered by %s'
+    theme: Theme
+    tips: 'The blog has been lovely to run %s day'
+    day: day
+    hour: hour
+    minute: minute
+    seconds: seconds
 
-title:
-  links: Friendly Link
-  new_publish: Newest Publications
-  comment: Message
-  author: Author
-  blog: Blog Application
-  privacy: Privacy and Comments
-  more: Read More
-  all_archives: All Archives
-  year_archives: 'Archive for %s'
-  other_articles: Other Articles
-  unclassified: Unclassified
+  title:
+    links: Friendly Link
+    new_publish: Newest Publications
+    comment: Message
+    author: Author
+    blog: Blog Application
+    privacy: Privacy and Comments
+    more: Read More
+    all_archives: All Archives
+    year_archives: 'Archive for %s'
+    other_articles: Other Articles
+    unclassified: Unclassified
 
-menu:
-  home: Home
-  archives: Archives
-  links: Links
-  about: About
+  menu:
+    home: Home
+    archives: Archives
+    links: Links
+    categories: Categories
+    tags: Tags
+    about: About
 
-favicon:
-  show_text: (/≧▽≦/)Hey! Good again!
-  hide_text: (●—●)Oh, crash!
-  
-search:
-  placeholder: Searching...
-  result_placeholder: Please enter keywords to search
-  empty: 'We didn''t find any results for the search: ${query}.'
-  hits: '${hits} results found'
-  hits_time: '${hits} results found in ${time} ms'
+  favicon:
+    show_text: (/≧▽≦/)Hey! Good again!
+    hide_text: (●—●)Oh, crash!
 
-reward:
-  comment: I'm so cute. Please give me money.
+  search:
+    placeholder: Searching...
+    result_placeholder: Please enter keywords to search
+    empty: 'We didn''t find any results for the search: ${query}.'
+    hits: '${hits} results found'
+    hits_time: '${hits} results found in ${time} ms'
 
-post:
-  sticky: TOP
-  read_more: READ MORE
-  copyright:
-    author: Post author
-    link: Post link
-    license_title: Copyright Notice
-    license_content: 'All articles in this blog are licensed under %s unless otherwise stated.'
-  copy:
-    success: Copied
-    failure: Copy failed
-  read_mode:
-    open: Enter reading mode
-    exit: Exit reading mode
-  notice_outdate_message: 'It has been %s days since the last update, the content of the article may be outdated.'
-  toc: Article table of contents
+  reward:
+    comment: I'm so cute. Please give me money.
 
-rightside:
-  toc_title: Open toc
-  readmode_title: Read Mode
-  back_to_top: Back To Top
-  aside: Toggle between single-column and double-column
+  post:
+    sticky: TOP
+    read_more: READ MORE
+    copyright:
+      author: Post author
+      link: Post link
+      license_title: Copyright Notice
+      license_content: 'All articles in this blog are licensed under %s unless otherwise stated.'
+    copy:
+      success: Copied
+      failure: Copy failed
+    read_mode:
+      open: Enter reading mode
+      exit: Exit reading mode
+    notice_outdate_message: 'It has been %s days since the last update, the content of the article may be outdated.'
+    toc: Article table of contents
 
-date_suffix:
-  just: Just
-  min: minutes ago
-  hour: hours ago
-  day: days ago
-  month: months ago
+  rightside:
+    toc_title: Open toc
+    readmode_title: Read Mode
+    back_to_top: Back To Top
+    aside: Toggle between single-column and double-column
 
-symbol:
-  comma: ', '
-  period: '. '
-  colon: ': '
+  date_suffix:
+    just: Just
+    min: minutes ago
+    hour: hours ago
+    day: days ago
+    month: months ago
 
-ieTips: For a better experience, use a browser other than Internet Explorer
+  symbol:
+    comma: ', '
+    period: '. '
+    colon: ': '
 
-not_found: 
-	name: HOME
-	text: The requested page does not exist. The method of arrival is unknown, but you can click the button below to navigate back to the homepage.
+  ieTips: For a better experience, use a browser other than Internet Explorer
+
+  not_found:
+    name: HOME
+    text: The requested page does not exist. The method of arrival is unknown, but you can click the button below to navigate back to the homepage.
+
+  lang:
+    label_en: EN
+    label_zh: 中文
+    title_en: Switch to English
+    title_zh: 切换到中文
+
+  banner:
+    default_text: Hi my new friend!
+    index_text: Hi my new friend!
+    archive_text: The article archive
+    category_text: The article category
+    tag_text: The article category tags
+    about_text: About me
+    post_text: Article's Newsletter
+    video: Video
+    scroll_down: Scroll down
+
+  about:
+    work_experience: Work Experience
+    projects: Projects
+    skills: Skills
+
+zh-Hans:
+  site:
+    title: 站点信息
+    webmaster: 站长
+    domain: 域名
+    avatar: 头像
+    describe: 描述
+    rule_text: 友链申请说明
+
+  sidebar:
+    residence: 所在地
+    city: 城市
+    age: 年龄
+    contact: 联系我
+    online: online
+    idle: 忙碌中
+    role_title: 高级数据与 AI 工程师
+    badge_data_eng: 数据工程
+    badge_ml_ai: ML / AI
+    badge_mlops: MLOps
+    tech_stack: Tech Stack
+    stream_dashboard: Stream Dashboard
+    live_stream: Live Stream
+    events_per_s: events/s
+    latency: 延迟
+    throughput: GB/s
+    focus_label: 专注方向
+    focus_value: 数据与 AI
+    typed_prefix: 我是
+    typed_line_1: 高级数据工程师 | AI数据与RAG流水线 | 寻求海外机会
+    singapore: 新加坡
+
+  footer:
+    powered: '由 %s 强力驱动'
+    theme: 主题
+    tips: '本站已可爱运行 %s 天'
+    day: 天
+    hour: 小时
+    minute: 分钟
+    seconds: 秒
+
+  title:
+    links: 友情链接
+    new_publish: 最新发布
+    comment: 留言
+    author: 作者
+    blog: 博客申请
+    privacy: 隐私与评论
+    more: 阅读更多
+    all_archives: 全部归档
+    year_archives: '%s 年归档'
+    other_articles: 其他文章
+    unclassified: 未分类
+
+  menu:
+    home: 首页
+    archives: 归档
+    links: 友链
+    categories: 分类
+    tags: 标签
+    about: 关于
+
+  favicon:
+    show_text: (/≧▽≦/)又见面啦！
+    hide_text: (●—●)别走呀！
+
+  search:
+    placeholder: 搜索中...
+    result_placeholder: 请输入关键词进行搜索
+    empty: '未找到与 ${query} 相关的结果。'
+    hits: '共找到 ${hits} 条结果'
+    hits_time: '共找到 ${hits} 条结果，耗时 ${time} ms'
+
+  reward:
+    comment: 如果这篇文章对你有帮助，欢迎支持一下。
+
+  post:
+    sticky: 置顶
+    read_more: 阅读全文
+    copyright:
+      author: 文章作者
+      link: 文章链接
+      license_title: 版权声明
+      license_content: '除特别声明外，本站文章均采用 %s 协议发布。'
+    copy:
+      success: 复制成功
+      failure: 复制失败
+    read_mode:
+      open: 开启阅读模式
+      exit: 退出阅读模式
+    notice_outdate_message: '本文距上次更新已超过 %s 天，内容可能已过时。'
+    toc: 文章目录
+
+  rightside:
+    toc_title: 打开目录
+    readmode_title: 阅读模式
+    back_to_top: 返回顶部
+    aside: 单栏/双栏切换
+
+  date_suffix:
+    just: 刚刚
+    min: 分钟前
+    hour: 小时前
+    day: 天前
+    month: 个月前
+
+  symbol:
+    comma: '，'
+    period: '。'
+    colon: '：'
+
+  ieTips: 为获得更好的体验，请使用非 IE 浏览器访问本站
+
+  not_found:
+    name: 返回首页
+    text: 你访问的页面不存在，可能链接已失效。点击下方按钮返回首页。
+
+  lang:
+    label_en: EN
+    label_zh: 中文
+    title_en: Switch to English
+    title_zh: 切换到中文
+
+  banner:
+    default_text: 嗨，新朋友！
+    index_text: 嗨，新朋友！
+    archive_text: 文章归档
+    category_text: 文章分类
+    tag_text: 文章标签
+    about_text: 关于我
+    post_text: 文章简报
+    video: 视频
+    scroll_down: 向下滚动
+
+  about:
+    work_experience: 工作经历
+    projects: 项目经历
+    skills: 技能

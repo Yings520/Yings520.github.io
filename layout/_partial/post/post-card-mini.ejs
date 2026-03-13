@@ -1,0 +1,52 @@
+<div class="col-lg-6">
+    <%
+      const langs = (Array.isArray(config.language) ? config.language : String(config.language || '').split(','))
+        .map(item => String(item).trim())
+        .filter(item => item && item !== 'default');
+      const pathWithSlash = `/${String(path || '').replace(/^\/+/, '')}`;
+      const pageLang = (page && (page.lang || page.language))
+        || langs.find(lang => pathWithSlash === `/${lang}` || pathWithSlash.startsWith(`/${lang}/`))
+        || langs[0];
+      const defaultLang = langs[0] || 'en';
+      const localizeUrl = rawUrl => {
+        if (!rawUrl) return url_for('/');
+        const value = String(rawUrl);
+        if (/^(#|\/\/|https?:\/\/)/i.test(value)) return value;
+        let pathname = value;
+        let suffix = '';
+        const match = value.match(/^([^?#]*)([\s\S]*)$/);
+        if (match) {
+          pathname = match[1];
+          suffix = match[2] || '';
+        }
+        if (!pathname.startsWith('/')) pathname = `/${pathname}`;
+        for (const lang of langs) {
+          if (pathname === `/${lang}`) pathname = '/';
+          if (pathname.startsWith(`/${lang}/`)) pathname = pathname.slice(lang.length + 1);
+        }
+        if (pageLang && pageLang !== defaultLang) {
+          pathname = pathname === '/' ? `/${pageLang}/` : `/${pageLang}${pathname}`;
+        }
+        return url_for(`${pathname}${suffix}`);
+      };
+    %>
+    <div class="trm-older-publications-card trm-scroll-animation trm-active-el">
+        <div class="trm-older-publication">
+            <%  let coverURl = post.cover ? 
+                post.cover : ( post.photos && post.photos.length ? post.photos : theme.cover.default )
+            %>
+            <a class="trm-op-top trm-anima-link" href="<%- localizeUrl(post.path) %>">
+                <span class="trm-op-cover">
+                    <%- swich_imgs(coverURl, { alt: "cover", class:"no-fancybox" }) %>
+                </span>
+                <h6 class="trm-op-title"><%= post.title %></h6>
+            </a>
+            <div class="trm-divider trm-mb-15 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li><%= date(post[theme.datetime_foramt.post_card.type],theme.datetime_foramt.post_card.date) %></li>
+                <li><%= date(post[theme.datetime_foramt.post_card.type],theme.datetime_foramt.post_card.time) %></li>
+                <li><%- post.categories && post.categories.length ? post.categories.data[0].name :__('title.unclassified')  %></li>
+            </ul>
+        </div>
+    </div>
+</div>

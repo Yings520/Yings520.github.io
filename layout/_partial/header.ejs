@@ -1,0 +1,109 @@
+<header class="trm-top-bar">
+	<div class="container">
+		<div class="trm-left-side">
+			<%- partial(theme.layout.header_logo) %>
+		</div>
+			<div class="trm-right-side">
+				<%- partial(theme.layout.header_menu) %>
+	      <%
+	        const langs = (Array.isArray(config.language) ? config.language : String(config.language || '').split(','))
+	          .map(item => String(item).trim())
+	          .filter(item => item && item !== 'default');
+	        const pathWithSlash = `/${String(path || '').replace(/^\/+/, '')}`;
+	        const explicitLang = page && (page.lang || page.language);
+	        const currentLang = explicitLang || langs.find(lang => pathWithSlash === `/${lang}` || pathWithSlash.startsWith(`/${lang}/`)) || langs[0];
+	        const defaultLang = langs[0] || 'en';
+	        const normalizeLang = value => String(value || defaultLang).replace(/_/g, '-').toLowerCase();
+	        const stripLangPrefix = inputPath => {
+	          for (const lang of langs) {
+	            if (inputPath === `/${lang}`) return '/';
+	            if (inputPath.startsWith(`/${lang}/`)) return inputPath.slice(lang.length + 1);
+	          }
+	          return inputPath;
+	        };
+	        const toArray = collection => {
+	          if (!collection) return [];
+	          if (typeof collection.toArray === 'function') return collection.toArray();
+	          return Array.isArray(collection) ? collection : [];
+	        };
+	        const docs = page && page.translation_key
+	          ? [...toArray(site && site.posts), ...toArray(site && site.pages)]
+	          : [];
+	        const i18nText = key => {
+	          const value = __(key);
+	          return value === key ? '' : value;
+	        };
+	        const getLangLabel = lang => {
+	          const normalized = normalizeLang(lang);
+	          if (/^zh/.test(normalized)) return i18nText('lang.label_zh') || '中文';
+	          if (/^en/.test(normalized)) return i18nText('lang.label_en') || 'EN';
+	          return i18nText(`lang.label_${normalized.replace(/-/g, '_')}`) || String(lang).toUpperCase();
+	        };
+	        const getLangTitle = lang => {
+	          const normalized = normalizeLang(lang);
+	          if (/^zh/.test(normalized)) return i18nText('lang.title_zh') || 'Switch language';
+	          if (/^en/.test(normalized)) return i18nText('lang.title_en') || 'Switch language';
+	          return `Switch to ${getLangLabel(lang)}`;
+	        };
+	        const resolveLangHref = targetLang => {
+	          if (normalizeLang(targetLang) === normalizeLang(currentLang)) {
+	            return url_for(pathWithSlash);
+	          }
+	          let switchHref = '';
+	          if (docs.length) {
+	            const matched = docs.find(doc =>
+	              doc &&
+	              doc.translation_key === page.translation_key &&
+	              doc.path &&
+	              doc.path !== page.path &&
+	              normalizeLang(doc.lang || doc.language) === normalizeLang(targetLang)
+	            );
+	            if (matched) {
+	              const matchedPath = String(matched.path);
+	              switchHref = url_for(matchedPath.startsWith('/') ? matchedPath : `/${matchedPath}`);
+	            }
+	          }
+	          if (!switchHref) {
+	            let canonicalPath = `/${String((page && page.canonical_path) || path || '').replace(/^\/+/, '')}`;
+	            canonicalPath = stripLangPrefix(canonicalPath);
+	            if (canonicalPath === '/index.html') canonicalPath = '/';
+	            if (normalizeLang(targetLang) !== normalizeLang(defaultLang)) {
+	              canonicalPath = canonicalPath === '/' ? `/${targetLang}/` : `/${targetLang}${canonicalPath}`;
+	            }
+	            switchHref = url_for(canonicalPath);
+	          }
+	          return switchHref;
+	        };
+	        const langItems = langs.map(lang => ({
+	          code: lang,
+	          label: getLangLabel(lang),
+	          title: getLangTitle(lang),
+	          href: resolveLangHref(lang),
+	          isCurrent: normalizeLang(lang) === normalizeLang(currentLang)
+	        })).filter(item => item.isCurrent || item.href);
+	        if (langItems.length > 1) {
+	      %>
+	      <div class="trm-lang-dropdown" role="navigation" aria-label="Language">
+	        <button class="trm-lang-dropdown-trigger" type="button" aria-haspopup="true">
+	          <span>Language</span>
+	          <i class="iconfont fas fa-angle-down" aria-hidden="true"></i>
+	        </button>
+	        <div class="trm-lang-dropdown-menu">
+	          <% langItems.forEach(item => { %>
+	            <% if (item.isCurrent) { %>
+	              <span class="trm-lang-item is-active" aria-current="true"><%- item.label %></span>
+	            <% } else { %>
+	              <a class="trm-lang-item" href="<%- item.href %>" title="<%- item.title %>"><%- item.label %></a>
+	            <% } %>
+	          <% }) %>
+	        </div>
+	      </div>
+	      <% } %>
+				<%- partial(theme.layout.header_theme) %>
+				<%- partial(theme.layout.header_search) %>
+			</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>

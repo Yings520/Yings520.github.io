@@ -1,0 +1,43 @@
+<%
+    const roleBadges = [
+        { icon: 'fas fa-database', label: __('sidebar.badge_data_eng') },
+        { icon: 'fas fa-brain', label: __('sidebar.badge_ml_ai') },
+        { icon: 'fas fa-microchip', label: __('sidebar.badge_mlops') }
+    ];
+%>
+<div class="trm-stream-profile">
+    <div class="trm-stream-avatar-wrap">
+        <div class="trm-avatar-frame trm-stream-avatar-frame">
+            <%- swich_imgs(theme.user.avatar, { alt: 'Avatar', class: 'trm-avatar' }) %>
+        </div>
+        <div class="trm-stream-status">
+            <span class="trm-stream-status-dot"></span>
+            <span class="trm-stream-status-text" data-status-online="<%= __('sidebar.online') %>" data-status-idle="<%= __('sidebar.idle') %>"><%= __('sidebar.online') %></span>
+        </div>
+    </div>
+    <h5 class="trm-name trm-stream-name"><%= theme.user.name %></h5>
+    <div class="trm-stream-role"><%= __('sidebar.role_title') %></div>
+
+    <div class="trm-stream-role-badges">
+        <% roleBadges.forEach(item => { %>
+            <span class="trm-stream-pill">
+                <%- icon(item.icon) %>
+                <span><%= item.label %></span>
+            </span>
+        <% }) %>
+    </div>
+
+    <div class="trm-stream-console">
+        <div class="trm-stream-console-bar">
+            <span class="trm-stream-console-lights">
+                <i></i><i></i><i></i>
+            </span>
+            <span class="trm-stream-console-title">~/pipeline</span>
+        </div>
+        <div class="trm-stream-console-body" data-stream-console>
+            <span class="trm-stream-console-prompt">&gt;</span>
+            <span class="trm-stream-console-code" data-stream-command>dbt build --select mart.customer_360+</span>
+            <span class="trm-stream-console-caret"></span>
+        </div>
+    </div>
+</div>

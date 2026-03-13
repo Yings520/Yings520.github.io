@@ -1,0 +1,67 @@
+<div class="trm-post-next-prev row">
+    <%
+        const langs = (Array.isArray(config.language) ? config.language : String(config.language || '').split(','))
+            .map(item => String(item).trim())
+            .filter(item => item && item !== 'default');
+        const pathWithSlash = `/${String(path || '').replace(/^\/+/, '')}`;
+        const defaultLang = langs[0] || 'en';
+        const currentLang = (page && (page.lang || page.language))
+            || langs.find(lang => pathWithSlash === `/${lang}` || pathWithSlash.startsWith(`/${lang}/`))
+            || defaultLang;
+        const currentPath = page && page.path ? decodeURIComponent(String(page.path).replace(/^\/+/, '')) : '';
+        const currentTitle = page && page.title ? String(page.title) : '';
+        const currentTranslationKey = page && page.translation_key ? String(page.translation_key) : '';
+        const currentCategoryNames = new Set(
+            page && page.categories && page.categories.data
+                ? page.categories.data.map(item => item && item.name).filter(Boolean)
+                : []
+        );
+        const currentTagNames = new Set(
+            page && page.tags && page.tags.data
+                ? page.tags.data.map(item => item && item.name).filter(Boolean)
+                : []
+        );
+        const allPosts = site && site.posts && site.posts.data ? site.posts.data : [];
+        const relatedPosts = allPosts
+            .filter(post => {
+                if (!post || !post.path) return false;
+                const postPath = decodeURIComponent(String(post.path).replace(/^\/+/, ''));
+                const samePath = postPath === currentPath;
+                const sameTitle = currentTitle && post.title && String(post.title) === currentTitle;
+                const sameTranslation = currentTranslationKey && post.translation_key && String(post.translation_key) === currentTranslationKey;
+                return !samePath && !sameTitle && !sameTranslation;
+            })
+            .filter(post => String(post.lang || post.language || defaultLang) === currentLang)
+            .map(post => {
+                const categoryMatches = post.categories && post.categories.data
+                    ? post.categories.data.reduce((count, item) => count + (currentCategoryNames.has(item && item.name) ? 1 : 0), 0)
+                    : 0;
+                const tagMatches = post.tags && post.tags.data
+                    ? post.tags.data.reduce((count, item) => count + (currentTagNames.has(item && item.name) ? 1 : 0), 0)
+                    : 0;
+                return {
+                    post,
+                    score: categoryMatches * 3 + tagMatches * 2
+                };
+            })
+            .sort((a, b) => {
+                if (b.score !== a.score) return b.score - a.score;
+                return new Date(b.post.date || 0) - new Date(a.post.date || 0);
+            })
+            .slice(0, 2);
+    %>
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            <%- __('title.other_articles') %>
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    <% if (theme.post_pagination.enable) { %>
+        <% relatedPosts.forEach(({ post }) => { %>
+            <%- theme.post_pagination.type === 'large'
+                ? partial(theme.layout.post_card, { post })
+                : partial(theme.layout.post_card_mini, { post }) %>
+        <% }) %>
+    <% } %>
+</div>

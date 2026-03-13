@@ -1,0 +1,77 @@
+<%
+    const techStack = [
+        { icon: 'fas fa-fire', label: 'Spark' },
+        { icon: 'fas fa-brain', label: 'PyTorch' },
+        { icon: 'fas fa-project-diagram', label: 'Airflow' },
+        { icon: 'fas fa-stream', label: 'Kafka' },
+        { icon: 'fas fa-cloud', label: 'K8s' },
+        { icon: 'fas fa-bolt', label: 'Flink' },
+        { icon: 'fas fa-code-branch', label: 'MLflow' },
+        { icon: 'fas fa-diagram-project', label: 'Kestra' },
+        { icon: 'fas fa-layer-group', label: 'Terraform' },
+        { icon: 'fas fa-gauge-high', label: 'InfluxDB' },
+        { icon: 'fab fa-docker', label: 'Docker' }
+    ];
+    const infoValue = key => {
+        const item = (theme.sidebar.info || []).find(entry => entry.key === key);
+        if (!item) return '';
+        return typeof item.val === 'string' ? __(item.val) : item.val;
+    };
+%>
+<div class="trm-stream-section">
+    <div class="trm-stream-section-title"><%= __('sidebar.tech_stack') %></div>
+    <div class="trm-stream-tech-grid">
+        <% techStack.forEach(item => { %>
+            <span class="trm-stream-pill trm-stream-pill-secondary">
+                <%- icon(item.icon) %>
+                <span><%= item.label %></span>
+            </span>
+        <% }) %>
+    </div>
+</div>
+
+<div class="trm-stream-section">
+    <div class="trm-stream-dashboard">
+        <div class="trm-stream-dashboard-head">
+            <div class="trm-stream-dashboard-title">
+                <%- icon('fas fa-wave-square') %>
+                <span><%= __('sidebar.live_stream') %></span>
+            </div>
+            <span class="trm-stream-dashboard-live-dot"></span>
+        </div>
+        <div class="trm-stream-metrics">
+            <div class="trm-stream-metric">
+                <strong data-stream-metric data-decimals="0" data-format="integer">164316</strong>
+                <span><%= __('sidebar.events_per_s') %></span>
+            </div>
+            <div class="trm-stream-metric">
+                <strong data-stream-metric data-decimals="0" data-suffix="ms">7</strong>
+                <span><%= __('sidebar.latency') %></span>
+            </div>
+            <div class="trm-stream-metric">
+                <strong data-stream-metric data-decimals="1">2.7</strong>
+                <span><%= __('sidebar.throughput') %></span>
+            </div>
+        </div>
+        <div class="trm-stream-meter">
+            <span data-stream-meter>0</span>
+        </div>
+    </div>
+</div>
+
+<div class="trm-stream-section trm-stream-meta">
+    <div class="trm-stream-meta-row">
+        <div class="trm-stream-meta-key">
+            <%- icon('fas fa-map-marker-alt') %>
+            <span><%= __('sidebar.residence') %></span>
+        </div>
+        <div class="trm-stream-meta-value"><%= infoValue('sidebar.residence') %></div>
+    </div>
+    <div class="trm-stream-meta-row">
+        <div class="trm-stream-meta-key">
+            <%- icon('fas fa-briefcase') %>
+            <span><%= __('sidebar.focus_label') %></span>
+        </div>
+        <div class="trm-stream-meta-value"><%= __('sidebar.focus_value') %></div>
+    </div>
+</div>
