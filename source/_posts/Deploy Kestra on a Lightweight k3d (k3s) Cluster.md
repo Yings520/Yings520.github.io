@@ -1,17 +1,17 @@
 ---
 title: Deploy Kestra on a Lightweight k3d (k3s) Cluster
 date: 2025-07-20 19:06:28
-cover: /img/kestra_20250720.png
+cover: /img/deploy-kestra-on-a-lightweight-k3d-k3s-cluster/cover-shared.png
 category: 
   - Workflows Orchestration
 tags: 
   - Kestra
+lang: en
+translation_key: post-Deploy-Kestra-on-a-Lightweight-k3d-k3s-Cluster
 ---
 # Deploy Kestra on a Lightweight k3d (k3s) Cluster — A Practical Guide
 
 This post shows a simple, developer-friendly way to run **Kestra** on a **local k3d (k3s) Kubernetes cluster** powered by **Docker Desktop**. We’ll also cover a very common pain point: **using your own local Docker images** inside Kestra workflows when the **Docker task runner (DinD)** is involved.
-
----
 
 ## What you’ll get
 
@@ -22,8 +22,6 @@ By the end, you will have:
 * **Kestra** installed via Helm and reachable from your laptop
 * A clear solution for **running workflows with Docker images stored in your local registry**
 
----
-
 ## Prerequisites
 
 Make sure you have:
@@ -33,8 +31,6 @@ Make sure you have:
 * `kubectl`
 * `helm`
 * `jq` (for patching the DinD container args)
-
----
 
 ## 1) Create a k3d cluster with a local registry
 
@@ -58,8 +54,6 @@ docker ps -f name=kestra-registry
 ```
 
 Example: if you see host port `58046`, that’s what you’ll push to.
-
----
 
 ## 2) Push your custom image into the local registry
 
@@ -123,8 +117,6 @@ kubectl get pods -n default -w
 kubectl get svc alfredx-postgresql -n default -o wide
 ```
 
----
-
 ## 4) (Optional) Map ports from the k3d cluster to your host
 
 If you want to reach NodePorts via `localhost:<nodePort>` on your laptop, you can **add port mappings** to an existing cluster (experimental, but handy):
@@ -134,8 +126,6 @@ k3d cluster edit kestra --port-add 30432:30432@server:0
 k3d cluster edit kestra --port-add 30080:30080@server:0
 k3d cluster edit kestra --port-add 30081:30081@server:0
 ```
-
----
 
 ## 5) Install Kestra via Helm
 
@@ -180,8 +170,6 @@ kubectl patch svc alfredx-kestra -n default -p '{
 Now you can typically open:
 
 * `http://localhost:30080` (Kestra UI)
-
----
 
 ## 6) The “local image + Docker runner (DinD)” trap — and how to fix it
 
@@ -275,8 +263,6 @@ docker info | sed -n "/Insecure Registries/,\$p"
 ```
 
 You should see `kestra-registry:5000` under *Insecure Registries*.
-
----
 
 ## Suggested “daily workflow” for iterating images
 

@@ -1,4 +1,6 @@
 ---
-title: 关于
+title: About
 layout: about
+lang: en
+translation_key: page-about
 ---

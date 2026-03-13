@@ -1,0 +1,8 @@
+<% if (theme.user.email) { %>
+<div class="trm-stream-section trm-stream-contact-wrap">
+    <a href="mailto:<%- theme.user.email %>" class="trm-btn trm-stream-contact-btn">
+        <%- icon(theme.icons.email) %>
+        <span><%= __('sidebar.contact') %></span>
+    </a>
+</div>
+<% } %>

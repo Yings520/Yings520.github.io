@@ -5,9 +5,8 @@
 #   1.2 如果元素对象是递归嵌套的 可以用空数组标识 {{"xx:标题":"xx","ff:标题":[]}} , ff 字段结构表示和 本身一致
 # 2. 枚举属性声明格式 eg:  <[enum,enum]>
 # 3. 编辑器中属性名称标注, 只需在属性字段后 添加注释
-# 4. 需要跳过当前属性, 只需要在注释上 添加两个 ## 
+# 4. 需要跳过当前属性, 只需要在注释上 添加两个 ##
 # 5. 字段默认没值时, 则必须在后面添加 备注信息
-
 
 # Open Graph protocol | OG 协议
 open_graph: true # 启用
@@ -15,7 +14,7 @@ open_graph: true # 启用
 # User info | 用户信息
 user:
   name: shicong Ying # Nickname | 昵称
-  first_name: -AI  # 名
+  first_name: -AI # 名
   last_name: Data # 姓
   email: sc.ying@outlook.com # email | 电子邮箱
   domain: https://ysc520.space # Domain | 站点域名
@@ -87,19 +86,18 @@ icons:
   double_arrows: fas fa-angle-double-down # Code highlight fold icon | 代码块折叠图标
   copy: fas fa-copy # Code copy icon | 代码块复制图标
 
-# Top navigation menu | 导航栏  
+# Top navigation menu | 导航栏
 top_bars: # <object[]> {{"title:标题":"","url:地址":"","noswup:不使用 Pjax":false,"children:子菜单":[]}}
-  - title: home
+  - title: menu.home
     url: /
-  - title: archives
+  - title: menu.archives
     url: /archives/
-  - title: categories
+  - title: menu.categories
     url: /categories/
-  - title: tags
-    url: /tags/  
-  - title: about
-    url: /about/  
-    
+  - title: menu.tags
+    url: /tags/
+  - title: menu.about
+    url: /about/
 
 # Banner settings | 横幅配置
 banner:
@@ -109,58 +107,58 @@ banner:
     el: .trm-banner # el | 弹幕容器
   default: # 默认横幅配置
     type: img # 横幅类型 <[img,slideshow,video]>
-    bgurl: ['/img/banner2.jpg', '/img/banner5.jpg'] # 背景图地址
-    banner_text: Hi my new friend! # 横幅描述
+    bgurl: ["/img/banner2.jpg", "/img/banner5.jpg"] # 背景图地址
+    banner_text: banner.default_text # 横幅描述
     position: top # 同 CSS object-position
     fit: cover # 同 CSS object-fit
   index: ## 首页横幅
     type: img # 横幅类型 <[img,slideshow,video]>
-    bgurl: ['/img/banner2.jpg', '/img/banner7.jpg'] # 背景图地址
-    banner_title: 
-    banner_text: 'Hi my new friend!'
+    bgurl: ["/img/banner2.jpg", "/img/banner7.jpg"] # 背景图地址
+    banner_title:
+    banner_text: banner.index_text
   archive: ## 归档页横幅
-    bgurl: ['/img/banner2.jpg', '/img/banner7.jpg'] # 背景图地址
-    banner_title: 
-    banner_text: 'The article archive'
+    bgurl: ["/img/banner2.jpg", "/img/banner7.jpg"] # 背景图地址
+    banner_title:
+    banner_text: banner.archive_text
   category: ## 分类横幅
-    banner_title: 
-    banner_text: 'The article category'
+    banner_title:
+    banner_text: banner.category_text
   tag: ## 分类横幅
-    banner_title: 
-    banner_text: 'The article category tags'
+    banner_title:
+    banner_text: banner.tag_text
   about: ## 关于页横幅
-    bgurl: ['/img/banner2.jpg', '/img/banner7.jpg'] # 背景图地址
-    banner_title: 
-    banner_text: 'About me'
-
+    bgurl: ["/img/banner2.jpg", "/img/banner7.jpg"] # 背景图地址
+    banner_title:
+    banner_text: banner.about_text
 
 # Sidebar settings | 侧栏
 sidebar:
-  typed_text_prefix: I`m # 打字动画固定前缀
-  typed_text: ["Senior Data Engineer | AI Data & RAG Pipelines | Seeking Overseas Opportunities."] # 打字效果切换条目 <string[]>
+  typed_text_prefix: sidebar.typed_prefix # 打字动画固定前缀
+  typed_text: [
+      "sidebar.typed_line_1",
+    ] # 打字效果切换条目 <string[]>
   info: # 侧栏信息 <object[]> {{"key:名称":"","val:值":""}}
     - key: sidebar.residence
-      val: Singapore
+      val: sidebar.singapore
   social: # 社交图标 <object[]> {{"name:名称":"","icon:图标":"","url:地址":""}}
     - name: Github
       icon: fab fa-github
       url: https://github.com/Yings520
-    
+
     - name: LinkedIn
       icon: fab fa-linkedin-in
       url: https://www.linkedin.com/in/shicong-ying-85aa53354/
-
 
 ## About page settings | 关于页
 about:
   insert: none # 插入规则 <[before,after,none]>
   title: 💻 SELECT insight FROM chaos WHERE clarity = 'engineered' # 标题
   introduction: >
-    <p>Experienced Big Data Engineer with 2+ years of expertise in designing and optimizing batch and real-time data pipelines, enhancing petabyte-scale data warehouse performance, and driving strategic insights for measurable commercial success. Proficient in big data frameworks including <strong>Spark</strong>, <strong>Flink</strong>, and <strong>Kafka</strong>; skilled with cloud platforms such as <strong>Alibaba Cloud</strong>, <strong>Google Cloud</strong>, and <strong>Amazon Web Services</strong>; and adept at dimensional modeling with a strong focus on analytics efficiency and governance.</p>
+    <p>Experienced Big Data Engineer with 3+ years of expertise in designing and optimizing batch and real-time data pipelines, enhancing petabyte-scale data warehouse performance, and driving strategic insights for measurable commercial success. Proficient in big data frameworks including <strong>Spark</strong>, <strong>Flink</strong>, and <strong>Kafka</strong>; skilled with cloud platforms such as <strong>Alibaba Cloud</strong>, <strong>Google Cloud</strong>, and <strong>Amazon Web Services</strong>; and adept at dimensional modeling with a strong focus on analytics efficiency and governance.</p>
   experience:
-    - company: 🏢 Poizon (DeWU)
+    - company: 🏢 Tamira Tech,Singapore
       role: Data Warehouse Engineer (Full-time)
-      date: 07/2024 – Present
+      date: 02/2026 – Present
       highlights: |
         <ul>
           <li>Built real-time and offline data pipelines for image search models, improving recommendation satisfaction and boosting user NPS score (+3%).</li>
@@ -168,7 +166,17 @@ about:
           <li>Reconstructed algorithm data warehouse models, boosting BI efficiency (+30%) and reducing maintenance time (-10%).</li>
           <li>Developed Spark log analysis tools to optimize resource bottlenecks (+50% optimization efficiency).</li>
         </ul>
-    - company: 🏢 Poizon (DeWU)
+    - company: 🏢 Poizon (DeWU),Shanghai
+      role: Data Warehouse Engineer (Full-time)
+      date: 07/2024 – 02/2026
+      highlights: |
+        <ul>
+          <li>Built real-time and offline data pipelines for image search models, improving recommendation satisfaction and boosting user NPS score (+3%).</li>
+          <li>Unified commercial and core metrics pipelines, developed AB testing datasets, and improved analysis efficiency (+25%).</li>
+          <li>Reconstructed algorithm data warehouse models, boosting BI efficiency (+30%) and reducing maintenance time (-10%).</li>
+          <li>Developed Spark log analysis tools to optimize resource bottlenecks (+50% optimization efficiency).</li>
+        </ul>
+    - company: 🏢 Poizon (DeWU),Shanghai
       role: Big Data Developer (Intern)
       date: 05/2023 – 09/2023
       highlights: |
@@ -247,7 +255,7 @@ footer:
 # You can show or hide reward in a specific page throuth `reward: true | false` in Front Matter.
 # Reward (Donate) | 打赏
 reward:
-  enable: false  # 启用
+  enable: false # 启用
   comment: reward.comment # 打赏按钮下显示文字
   url: # 打赏链接
   methods: # 打赏二维码图片列表 <object[]> {{"name:名称":"","path:图片地址":""}}
@@ -255,10 +263,10 @@ reward:
 # Article table of contents | 文章目录
 toc:
   enable: true # 启用
-  list_number: true # 是否显示编号
+  list_number: false # 是否显示编号（关闭 TOC 自动编号）
   post_title: true # 是否可以在文章标题点击打开目录
   max_depth: 3 # 生成 TOC 的最大深度
-  min_depth: 1 # 生成 TOC 的最小深度
+  min_depth: 2 # 生成 TOC 的最小深度（从 h2 开始，忽略 h1）
 
 # Archive page | 归档页
 archive:
@@ -358,8 +366,10 @@ katex:
 
 # Blog search | 搜索
 search:
-  enable: false # 启用
-  type: engine # 搜索类型 <[local,engine]>
+  enable: true # 启用
+  type: local # 搜索类型 <[local,engine]>
+  trigger: auto # 搜索触发方式 <[auto,manual]>
+  preload: true # 页面加载后预先拉取索引
   href: "https://www.google.com/search?q=site:" # 搜索引擎地址, type 为 engine 时填写
   domain: # 域名地址, type 为 engine 时填写
   # href: "https://www.baidu.com/s?wd=site:"
@@ -417,8 +427,8 @@ layout:
   path: layout # Folder path | 模板存放目录
   # layout
   main: _partial/main # 整体布局结构模板
-  header: _partial/header # 顶部菜单栏模板
-  banner: _partial/banner # 顶部横幅模板
+  header: async/_partial/header # 顶部菜单栏模板
+  banner: async/_partial/banner # 顶部横幅模板
   sidebar: _partial/sidebar/index # 侧栏模板
   footer: _partial/footer # 页脚模板
   # post
@@ -427,11 +437,11 @@ layout:
   reward: _partial/post/reward # 文章信息里打赏模板
   post_copyright: _partial/post/post-copyright # 文章详情版权信息模板
   post_next_prev: _partial/post/post-next-prev # 文章详情上下篇文章模板
-  post_card: _partial/post/post-card # 文章卡片信息模板
-  post_card_mini: _partial/post/post-card-mini # 文章卡片信息模板
+  post_card: async/_partial/post/post-card # 文章卡片信息模板
+  post_card_mini: async/_partial/post/post-card-mini # 文章卡片信息模板
   # widget
-  header_logo: _widget/header-logo # 顶部菜单-logo部分
-  header_menu: _widget/header-menu # 顶部菜单-菜单部分
+  header_logo: async/_widget/header-logo # 顶部菜单-logo部分
+  header_menu: async/_widget/header-menu # 顶部菜单-菜单部分
   header_theme: _widget/header-theme # 顶部菜单-主题切换部分
   header_search: _widget/header-search # 顶部菜单-查询部分
   categorie: _widget/categorie # 分类卡片模板
@@ -440,9 +450,9 @@ layout:
   post_toc: _widget/post-toc # 文章目录
   about_card: async/about-card # 关于页面配置卡片模板
   search: _widget/search # 搜索卡片模板 v2.1.11 +
-  sidebar_user: _partial/sidebar/card/user # 侧栏 - 用户头像模板
+  sidebar_user: async/_partial/sidebar/card/user # 侧栏 - 用户头像模板
   sidebar_social: _partial/sidebar/card/social # 侧栏 - 社交图标模块
-  sidebar_info: _partial/sidebar/card/info # 侧栏 - 用户信息模块
+  sidebar_info: async/_partial/sidebar/card/info # 侧栏 - 用户信息模块
   sidebar_email: _partial/sidebar/card/email # 侧栏 - 邮件模块
   # third-party
   comment: _third-party/comment/index # 评论插件模板
@@ -452,7 +462,7 @@ layout:
   mode_change: _partial/preloader/change-mode-preloader # 主题切换动画模板
   # page
   page_about: _partial/page/about # 关于页面模块
-  page_archive: _partial/page/archive # 归档页面模块
+  page_archive: async/_partial/page/archive # 归档页面模块
   page_category: _partial/page/category # 分类页面模块
   page_index: _partial/page/index # 首页页面模块
   page_links: _partial/page/links # 友链页面模块
@@ -460,7 +470,7 @@ layout:
   page_tag: _partial/page/tag # 标签页面模块
   # other
   script: _partial/script # 脚本块 v2.1.11 +
-  head: _partial/head # head块 v2.1.11 +
+  head: async/_partial/head # head块 v2.1.11 +
 
 # 404 config | 404 配置
 not_found:

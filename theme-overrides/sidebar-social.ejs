@@ -1,0 +1,11 @@
+<% if (theme.sidebar.social) { %>
+<div class="trm-stream-section">
+    <div class="trm-stream-social">
+        <% theme.sidebar.social.forEach(item => { %>
+            <a href="<%- url_for(item.url) %>" title="<%- item.name %>" rel="nofollow" target="_blank" class="trm-stream-social-link">
+                <%- icon(item.icon) %>
+            </a>
+        <% }) %>
+    </div>
+</div>
+<% } %>

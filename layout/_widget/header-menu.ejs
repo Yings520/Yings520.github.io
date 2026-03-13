@@ -1,0 +1,64 @@
+<!-- menu -->
+<%
+  const currentPageUrl = url_for(path || '/');
+  const langs = (Array.isArray(config.language) ? config.language : String(config.language || '').split(','))
+    .map(item => String(item).trim())
+    .filter(item => item && item !== 'default');
+  const pathWithSlash = `/${String(path || '').replace(/^\/+/, '')}`;
+  const pageLang = (page && (page.lang || page.language))
+    || langs.find(lang => pathWithSlash === `/${lang}` || pathWithSlash.startsWith(`/${lang}/`))
+    || langs[0];
+  const defaultLang = langs[0] || 'en';
+  const localizeUrl = rawUrl => {
+    if (!rawUrl) return url_for('/');
+    const value = String(rawUrl);
+    if (/^(#|\/\/|https?:\/\/)/i.test(value)) return value;
+    let pathname = value;
+    let suffix = '';
+    const match = value.match(/^([^?#]*)([\s\S]*)$/);
+    if (match) {
+      pathname = match[1];
+      suffix = match[2] || '';
+    }
+    if (!pathname.startsWith('/')) pathname = `/${pathname}`;
+    for (const lang of langs) {
+      if (pathname === `/${lang}`) pathname = '/';
+      if (pathname.startsWith(`/${lang}/`)) pathname = pathname.slice(lang.length + 1);
+    }
+    if (pageLang && pageLang !== defaultLang) {
+      pathname = pathname === '/' ? `/${pageLang}/` : `/${pageLang}${pathname}`;
+    }
+    return url_for(`${pathname}${suffix}`);
+  };
+  const normalizeForCompare = value => String(value || '')
+    .replace(/index\.html$/, '')
+    .replace(/\/+$/, '/');
+%>
+<div class="trm-menu">
+    <nav>
+        <ul>
+            <% theme.top_bars.forEach(element => {
+              const href = localizeUrl(element.url);
+              const isCurrent = normalizeForCompare(href) === normalizeForCompare(currentPageUrl);
+            %>
+            <li class="menu-item-has-children <%= isCurrent ? 'current-menu-item' : '' %>">
+                <a <%- element.noswup ? "data-no-swup":"" %> href="<%- href %>" target="<%- element.target %>">
+                    <%- __(element.title) %>
+                </a>
+                <% if (element.children) { %>
+                <ul>
+                    <% element.children.forEach(item => { %>
+                    <li>
+                        <a <%- item.noswup ? "data-no-swup":"" %> href="<%- localizeUrl(item.url) %>" target="<%- item.target %>">
+                            <%- __(item.title) %>
+                        </a>
+                    </li>
+                    <% }) %>
+                </ul>
+                <% } %>
+            </li>
+            <% }) %>
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->

@@ -1,0 +1,133 @@
+<%
+  const langs = (Array.isArray(config.language) ? config.language : String(config.language || '').split(','))
+    .map(item => String(item).trim())
+    .filter(item => item && item !== 'default');
+  const pathWithSlash = `/${String(path || '').replace(/^\/+/, '')}`;
+  const currentLang = (page && (page.lang || page.language))
+    || langs.find(lang => pathWithSlash === `/${lang}` || pathWithSlash.startsWith(`/${lang}/`))
+    || langs[0];
+  const defaultLang = langs[0] || 'en';
+  const homeHref = currentLang && currentLang !== defaultLang ? url_for(`/${currentLang}/`) : url_for('/');
+  const rawPath = String(path || '').replace(/^\/+/, '');
+  const pathWithoutLang = (() => {
+    for (const lang of langs) {
+      if (rawPath === `${lang}/index.html`) return 'index.html';
+      if (rawPath.startsWith(`${lang}/`)) return rawPath.slice(lang.length + 1);
+    }
+    return rawPath;
+  })();
+  const isHomeBreadcrumb = pathWithoutLang === 'index.html' || pathWithoutLang === '';
+  const pathNoIndex = String(pathWithoutLang || '').replace(/\/?index\.html$/, '');
+  const firstSegment = pathNoIndex.split('/')[0] || '';
+  const routeLabel = (() => {
+    if (!firstSegment) return '';
+    if (firstSegment === 'archives') {
+      return page && page.year ? __('title.year_archives', page.year) : __('menu.archives');
+    }
+    if (firstSegment === 'categories') {
+      return (page && page.category) || __('menu.categories');
+    }
+    if (firstSegment === 'tags') {
+      return (page && page.tag) || __('menu.tags');
+    }
+    if (firstSegment === 'about') {
+      return __('menu.about');
+    }
+    return '';
+  })();
+  const pageTitleSafe = (page && page.title && !langs.includes(String(page.title)) && page.title !== 'index.html')
+    ? page.title
+    : '';
+  const breadcrumbCurrent = routeLabel || pageTitleSafe || firstSegment;
+  const bannerTextValue = locals.bannerText || locals.banner_text;
+  const bannerTitleValue = locals.bannerTitle || locals.banner_title;
+  const i18nMaybe = value => {
+    const normalized = String(value || '').trim().toUpperCase();
+    if (normalized === 'NEWS LETTER') return __('banner.post_text');
+    return (typeof value === 'string' && value) ? __(value) : value;
+  };
+%>
+<div class="trm-banner">
+    <% if(type === 'img'){ 
+        let style = `object-position:${position || 'top'};object-fit:${fit || 'cover'};` %>
+    <!-- banner cover -->
+    <%- swich_imgs(bgurl,{
+        style:style,
+        alt:"banner",
+        class:"trm-banner-cover"
+    }) %>
+    <!-- banner cover end -->
+    <% } else if(type === 'slideshow' && Array.isArray(bgurl)) { %>
+    <!-- banner slideshow cover-->
+    <div class="swiper-container trm-slideshow">
+        <div class="swiper-wrapper">
+            <%  bgurl.forEach((item,index) => {  
+                let style = `object-position:${(Array.isArray(position) ? position[index]  : position) || 'top'};object-fit:${(Array.isArray(fit) ? fit[index]  : fit) || 'cover'}` %>
+            <div class="swiper-slide">
+                <img style="<%- style %>" src="<%= url_for(item) %>" alt="banner" class="trm-banner-cover <%- Array.isArray(position) ? (position[index] || 'top') : position %>" data-swiper-parallax-y="-200" data-swiper-parallax-scale="1.2">
+            </div>
+            <% }) %>
+        </div>
+    </div>
+    <!-- banner slideshow cover end -->
+    <% } else if(type === 'video'){ %>
+    <!-- banner video cover -->
+    <video autoplay="autoplay" loop muted playsinline webkit-playinginline class="trm-banner-cover">
+        <source src="<%= url_for(bgurl) %>" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+        Your browser does not support HTML5 video.
+    </video>
+    <!-- banner video cover end -->
+    <% } %>
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container">
+            <div class="row">
+                <% if(!page.single_column) { %>
+                <div class="col-lg-4"></div>
+                <% } %>
+                <div class="<%- !page.single_column ? 'col-lg-8':'col-lg-12' %>">
+
+                    <!-- banner title -->
+                    <div class="<%- !page.single_column ? 'trm-banner-text':'trm-banner-text trm-text-center' %> ">
+                        <div class="trm-label trm-mb-20">
+                            <%= i18nMaybe(bannerTextValue) %>
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            <%- i18nMaybe(bannerTitleValue) %>
+                        </h1>
+
+                        <% if(is_home() && (locals.videoUrl || locals.video_url)){ %>
+                            <a data-fancybox data-fancybox="gallery" href="<%- locals.videoUrl || locals.video_url %>" class="trm-btn trm-btn-border">
+                                <%- __('banner.video') %> <%- icon(theme.icons.play) %>
+                            </a>
+                        <% } else { %>
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="<%- homeHref %>" class="trm-anima-link"><%- __('menu.home') %></a>
+                                </li>
+                                <% if (!isHomeBreadcrumb && breadcrumbCurrent) { %>
+                                <li>
+                                    <span>
+                                        <%- breadcrumbCurrent %>
+                                    </span>
+                                </li>
+                                <% } %>
+                            </ul>
+                        <% } %>
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <span id="scroll-triger" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label"><%- __('banner.scroll_down') %></span>
+                    </span>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
