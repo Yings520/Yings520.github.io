@@ -21,6 +21,7 @@ const MERMAID_FENCE_PATTERNS = [
 ];
 
 let renderToken = 0;
+let themeObserverBound = false;
 
 function looksLikeMermaid(source) {
   const text = String(source || '').trim();
@@ -98,14 +99,54 @@ async function renderAllMermaid(root) {
   renderToken += 1;
   const token = renderToken;
 
+  const darkMode = document.documentElement.classList.contains('dark');
+  const themeVariables = darkMode
+    ? {
+        background: 'transparent',
+        primaryColor: '#11384a',
+        primaryBorderColor: '#34d0db',
+        primaryTextColor: '#dcf8ff',
+        secondaryColor: '#0f3142',
+        secondaryBorderColor: '#2fbfd0',
+        tertiaryColor: '#102f40',
+        tertiaryBorderColor: '#2aaec2',
+        lineColor: '#3bc4d6',
+        textColor: '#dcf8ff',
+        mainBkg: '#11384a',
+        clusterBkg: '#123444',
+        clusterBorder: '#2aaec2',
+        edgeLabelBackground: '#0b3042',
+        labelTextColor: '#effcff',
+        fontFamily: 'inherit'
+      }
+    : {
+        background: 'transparent',
+        primaryColor: '#eefafc',
+        primaryBorderColor: '#5fa6c4',
+        primaryTextColor: '#14394f',
+        secondaryColor: '#e8f6f9',
+        secondaryBorderColor: '#6caec9',
+        tertiaryColor: '#e2f2f6',
+        tertiaryBorderColor: '#77b7d0',
+        lineColor: '#5f95b2',
+        textColor: '#14394f',
+        mainBkg: '#eefafc',
+        clusterBkg: '#edf8fa',
+        clusterBorder: '#84b7cb',
+        edgeLabelBackground: '#e8f6f9',
+        labelTextColor: '#18445d',
+        fontFamily: 'inherit'
+      };
+
   mermaid.initialize({
     startOnLoad: false,
     theme: 'base',
     securityLevel: 'loose',
     fontFamily: 'inherit',
+    themeVariables,
     flowchart: {
       useMaxWidth: true,
-      htmlLabels: true,
+      htmlLabels: false,
       curve: 'basis'
     }
   });
@@ -117,6 +158,19 @@ async function renderAllMermaid(root) {
 
 function initMermaid() {
   renderAllMermaid(document);
+
+  if (!themeObserverBound) {
+    const observer = new MutationObserver(() => {
+      renderAllMermaid(document);
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    themeObserverBound = true;
+  }
 }
 
 document.addEventListener('DOMContentLoaded', initMermaid);
