@@ -87,6 +87,7 @@
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="<%= url_for('css/index.css') %>?v=<%= theme.version %>" id="trm-switch-style">
 <link rel="stylesheet" href="<%= url_for('css/code-language-tune.css') %>?v=<%= theme.version %>">
+<link rel="stylesheet" href="<%= url_for('css/mermaid-theme.css') %>?v=<%= theme.version %>">
 <script>
     let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
     let catchMode = localStorage.getItem('theme-mode') || defaultMode;
@@ -101,3 +102,4 @@
 <%- partial(theme.layout.analytics) %>
 
 <script defer src="<%= url_for('js/sidebar-live.js') %>?v=<%= theme.version %>"></script>
+<script type="module" src="<%= url_for('js/mermaid-render.js') %>?v=<%= theme.version %>"></script>
