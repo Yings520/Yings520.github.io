@@ -1,5 +1,5 @@
 ---
-title: Designing Data Assets for Search Analytics in Fashion E-commerce
+title: 某潮流电商搜索分析数仓建模实践：从业务过程到指标落地
 date: 2026-04-03 00:00:00
 cover: /img/designing-data-assets-for-search-analytics-in-fashion-e-commerce/cover-shared.png
 category:

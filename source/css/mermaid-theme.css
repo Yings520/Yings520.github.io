@@ -1,0 +1,148 @@
+:root {
+  --mermaid-shell-bg: linear-gradient(180deg, rgba(246, 253, 253, 0.9), rgba(233, 247, 248, 0.82));
+  --mermaid-shell-border: rgba(110, 174, 196, 0.24);
+  --mermaid-shell-shadow: 0 18px 36px rgba(122, 175, 187, 0.12);
+  --mermaid-node-fill: #eefafc;
+  --mermaid-node-border: #5fa6c4;
+  --mermaid-node-text: #14394f;
+  --mermaid-line: #5f95b2;
+  --mermaid-label-bg: rgba(231, 247, 250, 0.96);
+  --mermaid-label-text: #18445d;
+  --mermaid-cluster-fill: rgba(217, 240, 245, 0.68);
+  --mermaid-cluster-border: rgba(95, 166, 196, 0.32);
+}
+
+:root.dark {
+  --mermaid-shell-bg: linear-gradient(180deg, rgba(8, 33, 49, 0.86), rgba(8, 26, 40, 0.74));
+  --mermaid-shell-border: rgba(63, 183, 205, 0.22);
+  --mermaid-shell-shadow: 0 22px 42px rgba(4, 10, 18, 0.26);
+  --mermaid-node-fill: #11384a;
+  --mermaid-node-border: #34d0db;
+  --mermaid-node-text: #dcf8ff;
+  --mermaid-line: #3bc4d6;
+  --mermaid-label-bg: rgba(9, 43, 58, 0.94);
+  --mermaid-label-text: #effcff;
+  --mermaid-cluster-fill: rgba(16, 48, 64, 0.58);
+  --mermaid-cluster-border: rgba(52, 208, 219, 0.22);
+}
+
+.trm-mermaid-shell {
+  margin: 28px 0;
+  padding: 20px 22px;
+  border-radius: 24px;
+  border: 1px solid var(--mermaid-shell-border);
+  background: var(--mermaid-shell-bg);
+  box-shadow: var(--mermaid-shell-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  overflow-x: auto;
+}
+
+.trm-mermaid-shell.is-rendering {
+  min-height: 180px;
+}
+
+.trm-mermaid-shell svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 560px;
+  overflow: visible;
+}
+
+.trm-mermaid-shell .node rect,
+.trm-mermaid-shell .node circle,
+.trm-mermaid-shell .node ellipse,
+.trm-mermaid-shell .node polygon,
+.trm-mermaid-shell .node path {
+  fill: var(--mermaid-node-fill) !important;
+  stroke: var(--mermaid-node-border) !important;
+  stroke-width: 1.6px !important;
+}
+
+.trm-mermaid-shell .label text,
+.trm-mermaid-shell .cluster-label text,
+.trm-mermaid-shell .nodeLabel,
+.trm-mermaid-shell .nodeLabel p,
+.trm-mermaid-shell .nodeLabel span,
+.trm-mermaid-shell .nodeLabel div,
+.trm-mermaid-shell .edgeLabel,
+.trm-mermaid-shell .edgeLabel p,
+.trm-mermaid-shell .edgeLabel span,
+.trm-mermaid-shell .edgeLabel div {
+  fill: var(--mermaid-node-text) !important;
+  color: var(--mermaid-node-text) !important;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.3;
+  white-space: normal;
+}
+
+.trm-mermaid-shell .edgePath .path,
+.trm-mermaid-shell .flowchart-link {
+  stroke: var(--mermaid-line) !important;
+  fill: none !important;
+  stroke-width: 2px !important;
+}
+
+.trm-mermaid-shell .marker path,
+.trm-mermaid-shell .arrowheadPath,
+.trm-mermaid-shell .arrowMarkerPath {
+  stroke: var(--mermaid-line) !important;
+  fill: var(--mermaid-line) !important;
+}
+
+.trm-mermaid-shell .edgeLabel rect,
+.trm-mermaid-shell .labelBkg {
+  fill: var(--mermaid-label-bg) !important;
+  opacity: 1 !important;
+  stroke: transparent !important;
+}
+
+.trm-mermaid-shell .edgeLabel .label,
+.trm-mermaid-shell .edgeLabel foreignObject div,
+.trm-mermaid-shell .edgeLabel span,
+.trm-mermaid-shell .edgeLabel p {
+  background: var(--mermaid-label-bg) !important;
+  color: var(--mermaid-label-text) !important;
+  fill: var(--mermaid-label-text) !important;
+  border: 0 !important;
+  border-radius: 8px;
+  box-shadow: none !important;
+  padding: 2px 6px;
+}
+
+.trm-mermaid-shell .edgeLabel foreignObject {
+  overflow: visible;
+}
+
+.trm-mermaid-shell .cluster rect {
+  fill: var(--mermaid-cluster-fill) !important;
+  stroke: var(--mermaid-cluster-border) !important;
+  stroke-dasharray: 6 4;
+}
+
+.trm-mermaid-shell .cluster-label span,
+.trm-mermaid-shell .cluster-label p {
+  color: var(--mermaid-node-text) !important;
+}
+
+.trm-mermaid-shell .trm-mermaid-fallback {
+  margin: 0;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: rgba(8, 20, 34, 0.06);
+  color: var(--mermaid-node-text);
+  white-space: pre-wrap;
+}
+
+@media (max-width: 768px) {
+  .trm-mermaid-shell {
+    padding: 16px 14px;
+    border-radius: 18px;
+  }
+
+  .trm-mermaid-shell svg {
+    min-width: 480px;
+  }
+}
