@@ -90,6 +90,16 @@ const overrides = [
       'card',
       'email.ejs'
     )
+  },
+  {
+    source: path.join(rootDir, 'theme-overrides', 'sw.js'),
+    target: path.join(
+      rootDir,
+      'node_modules',
+      'hexo-theme-async',
+      'source',
+      'sw.js'
+    )
   }
 ];
 
