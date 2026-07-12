@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980" role="img" aria-labelledby="title desc">
+  <title id="title">Netflix UDA Unified Data Architecture</title>
+  <desc id="desc">A simplified bilingual diagram showing how Netflix UDA moves from semantic islands to a central ontology, logical schema, mappings, projections, and physical views.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fbff; }
+      .panel { fill: #ffffff; stroke-width: 3; rx: 24; ry: 24; }
+      .red { stroke: #c63d32; }
+      .blue { stroke: #2f63c7; }
+      .teal { stroke: #1f9d9a; }
+      .navy { stroke: #1e437f; }
+      .purple { stroke: #7a45c5; }
+      .orange { stroke: #d97821; }
+      .light { fill: #f6f9fc; stroke: #d8e3ef; stroke-width: 2; rx: 16; ry: 16; }
+      .title { font: 700 34px Arial, sans-serif; fill: #10233f; }
+      .subtitle { font: 400 20px Arial, sans-serif; fill: #42556f; }
+      .section { font: 700 24px Arial, sans-serif; }
+      .label { font: 600 18px Arial, sans-serif; fill: #18314f; }
+      .body { font: 400 16px Arial, sans-serif; fill: #31475f; }
+      .small { font: 400 15px Arial, sans-serif; fill: #4d6278; }
+      .benefit { font: 700 20px Arial, sans-serif; fill: #184c91; }
+      .arrow { stroke: #324d73; stroke-width: 4; fill: none; marker-end: url(#arrowhead); }
+      .dashed { stroke: #c96e6e; stroke-width: 3; stroke-dasharray: 10 8; fill: none; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#324d73" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1600" height="980" />
+
+  <text x="800" y="70" text-anchor="middle" class="title">Netflix UDA 统一数据架构 / Unified Data Architecture</text>
+  <text x="800" y="112" text-anchor="middle" class="subtitle">一处建模，多处投影 / Model Once, Represent Everywhere</text>
+
+  <rect class="panel red" x="40" y="170" width="300" height="360" />
+  <text x="190" y="220" text-anchor="middle" class="section" fill="#a52a22">Semantic Islands</text>
+  <text x="190" y="252" text-anchor="middle" class="section" fill="#a52a22">语义孤岛</text>
+  <line x1="70" y1="280" x2="310" y2="280" stroke="#c63d32" stroke-width="2" />
+  <text x="90" y="330" class="label">duplicated models / 重复建模</text>
+  <text x="90" y="390" class="label">inconsistent terminology / 术语不一致</text>
+  <text x="90" y="450" class="label">fragile downstream / 下游依赖脆弱</text>
+
+  <rect class="panel blue" x="410" y="150" width="360" height="420" />
+  <text x="590" y="215" text-anchor="middle" class="section" fill="#2457b4">Central Ontology / 中央本体</text>
+  <text x="590" y="250" text-anchor="middle" class="subtitle">(RDF / SHACL)</text>
+  <rect class="light" x="445" y="300" width="290" height="62" />
+  <text x="590" y="338" text-anchor="middle" class="label">统一业务语义</text>
+  <rect class="light" x="445" y="380" width="290" height="86" />
+  <text x="590" y="420" text-anchor="middle" class="label">Classes / Relationships / Constraints</text>
+  <rect class="light" x="445" y="485" width="290" height="62" />
+  <text x="590" y="523" text-anchor="middle" class="label">Semantic Integration / 语义整合</text>
+
+  <rect class="panel teal" x="840" y="150" width="360" height="420" />
+  <text x="1020" y="215" text-anchor="middle" class="section" fill="#148b89">Logical Schema / 逻辑模式</text>
+  <rect class="light" x="875" y="290" width="290" height="70" />
+  <text x="1020" y="322" text-anchor="middle" class="label">Canonical domain model</text>
+  <text x="1020" y="346" text-anchor="middle" class="small">规范领域模型</text>
+  <rect class="light" x="875" y="380" width="290" height="90" />
+  <text x="1020" y="415" text-anchor="middle" class="label">Entity / Attribute / Relation</text>
+  <text x="1020" y="440" text-anchor="middle" class="small">实体 / 属性 / 关系</text>
+  <rect class="light" x="875" y="490" width="290" height="62" />
+  <text x="1020" y="528" text-anchor="middle" class="label">Stable semantic contract / 稳定语义契约</text>
+
+  <rect class="panel navy" x="1270" y="130" width="280" height="440" />
+  <text x="1410" y="195" text-anchor="middle" class="section" fill="#1e437f">Physical Views / 物理视图</text>
+  <rect class="light" x="1305" y="250" width="210" height="88" />
+  <text x="1410" y="290" text-anchor="middle" class="label">Iceberg</text>
+  <text x="1410" y="316" text-anchor="middle" class="small">analytics table / 分析表</text>
+  <rect class="light" x="1305" y="360" width="210" height="88" />
+  <text x="1410" y="400" text-anchor="middle" class="label">GraphQL</text>
+  <text x="1410" y="426" text-anchor="middle" class="small">federated API / 联邦 API</text>
+  <rect class="light" x="1305" y="470" width="210" height="88" />
+  <text x="1410" y="510" text-anchor="middle" class="label">Java SDK</text>
+  <text x="1410" y="536" text-anchor="middle" class="small">generated interface / 生成接口</text>
+
+  <path class="arrow" d="M340 350 L410 350" />
+  <path class="arrow" d="M770 360 L840 360" />
+  <path class="arrow" d="M1200 360 L1270 300" />
+  <path class="arrow" d="M1200 360 L1270 405" />
+  <path class="arrow" d="M1200 360 L1270 515" />
+
+  <path class="dashed" d="M190 530 L190 640 L1410 640" />
+  <text x="120" y="625" class="label" fill="#b13f3f">UDA 解决 / UDA Solves</text>
+
+  <rect class="panel purple" x="430" y="680" width="360" height="180" />
+  <text x="610" y="735" text-anchor="middle" class="section" fill="#6c39b9">Mappings / 映射</text>
+  <text x="610" y="780" text-anchor="middle" class="body">概念 ↔ 数据容器</text>
+  <text x="610" y="810" text-anchor="middle" class="body">logical to physical binding</text>
+  <text x="610" y="840" text-anchor="middle" class="body">可寻址字段与关系</text>
+
+  <rect class="panel orange" x="840" y="680" width="360" height="180" />
+  <text x="1020" y="735" text-anchor="middle" class="section" fill="#cf721e">Projections / 投影</text>
+  <text x="1020" y="780" text-anchor="middle" class="body">自动生成 schema / contracts</text>
+  <text x="1020" y="810" text-anchor="middle" class="body">GraphQL / Avro / SQL / Java</text>
+  <text x="1020" y="840" text-anchor="middle" class="body">preserve semantics / 保留语义</text>
+
+  <path class="arrow" d="M610 680 L610 575" />
+  <path class="arrow" d="M1020 680 L1020 575" />
+
+  <rect class="panel blue" x="45" y="885" width="1510" height="70" />
+  <text x="800" y="928" text-anchor="middle" class="benefit">Engineering Benefits / 工程红利: schema isolation, reuse, discoverability, interoperability</text>
+</svg>
